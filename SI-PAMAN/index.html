@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI-PAMAN | Pelaporan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Loading spinner style */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #16a34a;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+        
+        <div class="text-center mb-6 flex flex-col items-center justify-center">
+            <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green-600">
+                    <path d="M19.007 3.105a.75.75 0 0 1-.772.396 19.565 19.565 0 0 0-2.673-.184c-5.323 0-9.601 4.23-9.601 9.447a1 1 0 0 1-1 1H4.25a.75.75 0 0 1-.612-1.185 11.25 11.25 0 0 1 1.624-1.95.75.75 0 0 1 1.06 1.061 9.756 9.756 0 0 0-1.215 1.451h.143a11.101 11.101 0 0 1 10.101-10.947.75.75 0 0 1 .772.396Z" />
+                    <path d="M19.007 3.105a.75.75 0 0 1 .1 1.003A19.566 19.566 0 0 1 17.61 7.11a1 1 0 0 1-1 1h-1.391a.75.75 0 0 1-.612-1.185 11.25 11.25 0 0 1 1.624-1.95.75.75 0 0 1 1.06 1.061 9.756 9.756 0 0 0-1.215 1.451h.143a11.101 11.101 0 0 1 3.101 7.947 1 1 0 0 1-1 1h-1.391a.75.75 0 0 1-.612-1.185 11.25 11.25 0 0 1 1.624-1.95.75.75 0 0 1 1.06 1.061 9.756 9.756 0 0 0-1.215 1.451h.143a11.101 11.101 0 0 1 .101 3.447.75.75 0 0 1-.396.772.75.75 0 0 1-1-.1c-.136-.184-.278-.363-.426-.536a9.753 9.753 0 0 0-1.215-1.451.75.75 0 0 1 1.06-1.061 11.251 11.251 0 0 1 1.624 1.95.75.75 0 0 1-.612 1.185h-1.391a1 1 0 0 1-1-1 11.101 11.101 0 0 1 3.101-7.947h.143a9.756 9.756 0 0 0-1.215 1.451.75.75 0 0 1 1.06-1.061 11.25 11.25 0 0 1 1.624 1.95.75.75 0 0 1-.612 1.185h-1.391a19.565 19.565 0 0 1-1.397-3.003.75.75 0 0 1 .1-1.003Z" />
+                    <path fill-rule="evenodd" d="M12 2.25c.12 0 .239.01.355.03a11.105 11.105 0 0 1 8.93 8.93c.02.116.03.235.03.355a11.1 11.1 0 0 1-3.064 7.697 9.756 9.756 0 0 0 1.215-1.451.75.75 0 0 1 1.06 1.061 11.253 11.253 0 0 1-1.95 1.624.75.75 0 0 1-1.185-.612v-1.391a1 1 0 0 1 1-1 9.756 9.756 0 0 0 1.451-1.215.75.75 0 0 1 1.061 1.06 11.25 11.25 0 0 1-1.624 1.95.75.75 0 0 1-1.185-.612v-1.391c0-5.323-4.23-9.601-9.447-9.601a1 1 0 0 1-1-1V4.25a.75.75 0 0 1 1.185-.612 11.25 11.25 0 0 1 1.95 1.624.75.75 0 0 1-1.06 1.061 9.756 9.756 0 0 0-1.451 1.215v-.143a11.101 11.101 0 0 1 7.947-3.101Z" clip-rule="evenodd" />
+                </svg>
+                
+                <h1 class="text-3xl font-extrabold text-green-700 tracking-tight">SI-PAMAN</h1>
+            </div>
+            <p class="text-gray-500 text-sm mt-1">Sistem Informasi Pelaporan Taman</p>
+            <div class="w-16 h-1 bg-green-500 rounded-full mt-3"></div>
+        </div>
+
+        <form id="reportForm">
+            <div class="mb-4">
+                <label class="block text-sm font-bold mb-1 text-gray-700">Nama Petugas</label>
+                <select name="nama" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-200 focus:border-green-500 transition" required>
+                    <option value="">-- Pilih Nama --</option>
+                    <option value="Budi">Budi</option>
+                    <option value="Siti">Siti</option>
+                    <option value="Agus">Agus</option>
+                    <option value="Mega">Mega</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-bold mb-1 text-gray-700">Lokasi Taman</label>
+                <select name="lokasi" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-200 focus:border-green-500 transition" required>
+                    <option value="">-- Pilih Lokasi --</option>
+                    <option value="Taman Kota">Taman Kota</option>
+                    <option value="Taman Lansia">Taman Lansia</option>
+                    <option value="Taman Hutan Raya">Taman Hutan Raya</option>
+                    <option value="Jalur Hijau Sudirman">Jalur Hijau Sudirman</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-bold mb-1 text-gray-700">Foto Hasil Kerja (Kamera)</label>
+                <input type="file" id="fotoFile" accept="image/*" capture="environment" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 cursor-pointer" required>
+                
+                <input type="hidden" name="foto" id="fotoBase64">
+                
+                <div id="wrapperStatusFoto" class="flex items-center mt-2 hidden">
+                    <div id="loaderFoto" class="loader"></div>
+                    <p id="statusFoto" class="text-xs text-gray-600"></p>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-bold mb-1 text-gray-700">Catatan Tambahan (Opsional)</label>
+                <textarea name="catatan" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-200 focus:border-green-500 transition" rows="3" placeholder="Misal: Penyiraman selesai, sampah diangkut..."></textarea>
+            </div>
+
+            <input type="hidden" name="gps" id="gpsData">
+
+            <button type="submit" id="btnSubmit" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-lg hover:bg-green-700 active:scale-[0.98] transition-all duration-150 shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                <span id="textSubmit">KIRIM LAPORAN</span>
+                <div id="loaderSubmit" class="loader border-t-white hidden"></div>
+            </button>
+        </form>
+        
+        <p class="text-center text-xs text-gray-400 mt-6">&copy; 2023 Dinas Pertamanan. v1.2</p>
+    </div>
+
+    <script>
+        // GANTI DENGAN URL WEB APP DARI GOOGLE APPS SCRIPT ANDA
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby5eNB2PPfrHlKoYDNMu9QzU2UKlD79ULskuU76OF-PwY_KRODhbA9kr3ALYMeaq3o/exec';
+        
+        const form = document.getElementById('reportForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const textSubmit = document.getElementById('textSubmit');
+        const loaderSubmit = document.getElementById('loaderSubmit');
+        const fotoBase64Input = document.getElementById('fotoBase64');
+        const statusFoto = document.getElementById('statusFoto');
+        const loaderFoto = document.getElementById('loaderFoto');
+        const wrapperStatusFoto = document.getElementById('wrapperStatusFoto');
+
+        // 1. Ambil Lokasi GPS otomatis saat halaman dibuka
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    document.getElementById('gpsData').value = `${pos.coords.latitude}, ${pos.coords.longitude}`;
+                    console.log("GPS Acquired");
+                },
+                (err) => {
+                    document.getElementById('gpsData').value = "Izin GPS Ditolak";
+                    console.warn("GPS Denied");
+                },
+                { enableHighAccuracy: true }
+            );
+        } else {
+            document.getElementById('gpsData').value = "Browser tidak support GPS";
+        }
+
+        // 2. Proses Kompresi Foto Otomatis (Client-side Resize)
+        document.getElementById('fotoFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Tampilkan UI loading foto
+            wrapperStatusFoto.classList.remove('hidden');
+            loaderFoto.classList.remove('hidden');
+            statusFoto.innerText = "Mengecilkan ukuran foto...";
+            statusFoto.classList.remove('text-green-600');
+            btnSubmit.disabled = true; // Kunci tombol kirim selama proses
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = event => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    // Pengaturan Kompresi
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 1000; // Lebar maksimal foto (pixel)
+                    
+                    let width = img.width;
+                    let height = img.height;
+
+                    // Hitung rasio untuk mempertahankan aspect ratio
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Convert ke Base64 dengan kualitas 0.7 (70%)
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+                    
+                    // Masukkan hasil kompresi ke input hidden
+                    fotoBase64Input.value = compressedBase64;
+                    
+                    // Update UI Status Foto Selesai
+                    loaderFoto.classList.add('hidden');
+                    statusFoto.innerText = "Foto siap (Ukuran berhasil diperkecil) ✅";
+                    statusFoto.classList.add('text-green-600');
+                    btnSubmit.disabled = false; // Buka kunci tombol kirim
+                };
+            };
+            reader.onerror = error => {
+                console.error("Error reading file:", error);
+                statusFoto.innerText = "Gagal memproses foto.";
+                loaderFoto.classList.add('hidden');
+            };
+        });
+
+        // 3. Handle Submit Formulir
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Validasi tambahan memastikan foto sudah selesai dikompresi
+            if(!fotoBase64Input.value) {
+                alert("Mohon tunggu sampai foto selesai diproses.");
+                return;
+            }
+
+            // UI Loading Saat Mengirim
+            btnSubmit.disabled = true;
+            textSubmit.innerText = "Mengirim...";
+            loaderSubmit.classList.remove('hidden');
+
+            // Menggunakan FormData agar sesuai dengan doPost(e) di Apps Script
+            const formData = new FormData(form);
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: formData,
+                mode: 'no-cors' // Penting untuk menghindari error CORS browser
+            })
+            .then(() => {
+                // Karena mode 'no-cors', kita tidak bisa membaca respon server,
+                // tapi jika masuk .then() biasanya dianggap sukses dikirim ke endpoint.
+                
+                // Tampilkan notifikasi sukses kustom (opsional, menggunakan alert biasa agar mudah)
+                alert("✅ Laporan Berhasil Terkirim!");
+                
+                // Reset Formulir
+                form.reset();
+                fotoBase64Input.value = "";
+                wrapperStatusFoto.classList.add('hidden');
+                
+                // Kembalikan tombol ke keadaan semula
+                btnSubmit.disabled = false;
+                textSubmit.innerText = "KIRIM LAPORAN";
+                loaderSubmit.classList.add('hidden');
+                
+                // Ambil ulang GPS untuk laporan berikutnya
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    document.getElementById('gpsData').value = `${pos.coords.latitude}, ${pos.coords.longitude}`;
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("❌ Gagal mengirim laporan. Pastikan koneksi internet stabil dan coba lagi.");
+                
+                // Kembalikan tombol jika gagal
+                btnSubmit.disabled = false;
+                textSubmit.innerText = "KIRIM LAPORAN";
+                loaderSubmit.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
